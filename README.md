@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This project implements a **production-ready, end-to-end customer churn prediction system**, starting from raw data ingestion to real-time predictions via a web interface.
 
@@ -18,49 +18,25 @@ The system covers the **entire machine learning lifecycle**:
 
 ---
 
-## 🧭 Project Workflow
+## Project Workflow
 
-```
-Data Ingestion
-      ↓
-Data Cleaning & EDA
-      ↓
-Churn Profiling
-      ↓
-Risk Segmentation
-      ↓
-Model Selection
-   ↙     ↓      ↘
-LogReg  RF   XGBoost
-              ↓
-       Finalized XGBoost
-              ↓
-      End-to-End ML Pipeline
-              ↓
- FastAPI Inference Service (Pydantic)
-              ↓
-        Dockerized API
-              ↓
-   Streamlit UI Integration
-              ↓
- Prediction from User Input
-```
+![Dashboard Screenshot](assets/dashboard_ss.png)
 
 ---
 
-## 🧠 Key Features
+## Key Features
 
 - End-to-end **production-grade ML pipeline**
 - Custom **sklearn transformers**
 - **XGBoost** with categorical feature support
 - **Strict request validation** using Pydantic
 - Modular, scalable project structure
-- Dockerized FastAPI backend
-- Interactive Streamlit frontend
+- **Dockerized FastAPI** backend
+- Interactive **Streamlit frontend**
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 churn_prediction_system/
@@ -84,31 +60,55 @@ churn_prediction_system/
 
 ---
 
-## 📊 Notebooks
+## Notebooks
 
-### 1️⃣ Churn Profiling & Retention Analysis  
+### Churn Profiling & Retention Analysis  
 **`01_Churn_Profiling_&_Retention_Analysis.ipynb`**
 
 - Customer behavior analysis
 - Churn vs non-churn segmentation
 - Retention insights and business impact
 
+## Highlights & Insights
+- **Baseline churn rate:** ~**16%**
+- **Risk segmentation:**  
+  - **High-Risk customers (~37%)** contribute ~**64% of churners**  
+  - High-Risk churn ≈ **28%** vs **~9%** for Low-Risk
+- **Top churn drivers:**  
+  - **Transaction count**
+  - **Total transaction amount**
+  - **Total revolving balance**
+- **Behavioral signals:**  
+  - **4+ inactive months** → sharp churn increase  
+  - **4+ bank contacts** → strong dissatisfaction signal  
+  - **4+ product holders** → significantly lower churn
+
 ---
 
-### 2️⃣ Churn Prediction & Modeling  
+### Churn Prediction & Modeling  
 **`02_Churn_Prediction.ipynb`**
 
-- Feature engineering
-- Model training and evaluation
-- Model comparison:
-  - Logistic Regression
-  - Random Forest
-  - XGBoost
-- Final model selection and pipeline export
+Three supervised models were trained on the engineered dataset  
+(encoding + selective scaling; class imbalance considered).
+
+- **Logistic Regression** – served as a baseline; while it captured most churners (high recall), class imbalance caused over-prediction of churn, making it unsuitable for deployment.
+- **Random Forest** – strong uplift over baseline; reliable mid-complexity model with high accuracy and good churn recall.
+- **XGBoost** – best overall; achieved the strongest balance between churn recall and precision while maintaining very high accuracy.  
+
+### Metrics (test set)
+
+| Model | Precision (0) | Recall (0) | F1 (0) | Precision (1) | Recall (1) | F1 (1) | Accuracy |
+|------|---------------|------------|--------|---------------|------------|--------|----------|
+| Logistic Regression | 0.96 | 0.86 | 0.91 | 0.53 | 0.82 | 0.64 | 0.85 |
+| Random Forest | 0.95 | 0.99 | 0.97 | 0.93 | 0.74 | 0.83 | 0.95 |
+| **XGBoost** | **0.98** | **0.99** | **0.98** | **0.92** | **0.89** | **0.91** | **0.97** |
+
+
+> **Conclusion:** XGBoost delivers the best trade-off between churner recall and overall accuracy.
 
 ---
 
-## 🧩 Machine Learning Pipeline
+## Machine Learning Pipeline
 
 The saved pipeline (`xgb_churn_pipeline.pkl`) contains:
 
@@ -122,16 +122,16 @@ All preprocessing and modeling logic is **bundled into a single pipeline**, ensu
 
 ---
 
-## ⚡ FastAPI Inference Service
+## FastAPI Inference Service
 
-### 🔐 Input Validation
+### Input Validation
 
 - Strong type enforcement
 - Range checks
 - Categorical value validation
 - Automatic error handling
 
-### 🔗 Endpoint
+### Endpoint
 
 ```
 POST /predict
@@ -147,7 +147,7 @@ POST /predict
 
 ---
 
-## 🎛 Streamlit Frontend
+## Streamlit Frontend
 
 ### Features
 
@@ -164,7 +164,7 @@ Streamlit UI → FastAPI → ML Pipeline → Prediction → UI
 
 ---
 
-## 🐳 Dockerization
+## Dockerization
 
 The FastAPI inference service is fully containerized.
 
@@ -182,9 +182,9 @@ docker run -p 8000:8000 churn-api
 
 ---
 
-## ▶️ Running the Project Locally
+## Running the Project Locally
 
-### 1️⃣ Start FastAPI Server
+### Start FastAPI Server
 
 ```bash
 uvicorn app:app --reload
@@ -197,7 +197,7 @@ http://127.0.0.1:8000
 
 ---
 
-### 2️⃣ Start Streamlit App
+### Start Streamlit App
 
 ```bash
 streamlit run streamlit_app.py
@@ -207,12 +207,27 @@ UI available at:
 ```
 http://localhost:8501
 ```
+---
+## Power BI Dashboard
+**Tabs:** Executive KPIs · Demographics · Products · Engagement · Risk
+
+**KPIs include:**
+- Overall Churn Rate
+- Churn by Risk Segment
+- Churn by Gender / Income / Education
+- Churn by Card Category
+- Churn by Products Held
+- Churn by Inactivity Months
+- Churn by Contact Frequency
+
+![Dashboard Screenshot](assets/dashboard_ss.png)
 
 ---
 
-## 📦 Tech Stack
+## Tech Stack
 
 - Python
+- SQL
 - Pandas / NumPy
 - Scikit-learn
 - XGBoost
@@ -221,10 +236,11 @@ http://localhost:8501
 - Streamlit
 - Docker
 - SHAP (optional explainability)
+- Power BI
 
 ---
 
-## 🎯 Business Value
+## Business Value
 
 - Early identification of high-risk churn customers
 - Data-driven retention strategy enablement
@@ -233,7 +249,7 @@ http://localhost:8501
 
 ---
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - SHAP-based explainability in UI
 - Model monitoring and drift detection
@@ -242,7 +258,7 @@ http://localhost:8501
 
 ---
 
-## 👤 Author
+## Author
 
-**Dev Patel**  
+**Dev Bhalodia**  
 Data Science | Machine Learning | Production ML Systems
