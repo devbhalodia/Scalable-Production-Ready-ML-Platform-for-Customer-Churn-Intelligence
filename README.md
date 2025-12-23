@@ -1,4 +1,4 @@
-# Production_Ready_Credit_Card_Churn_Prediction_System
+# Production Ready Credit Card Churn Prediction System
 
 **End-to-End ML Pipeline | FastAPI | Streamlit | Docker | XGBoost**
 
