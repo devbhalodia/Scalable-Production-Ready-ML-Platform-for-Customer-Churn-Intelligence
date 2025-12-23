@@ -20,7 +20,7 @@ The system covers the **entire machine learning lifecycle**:
 
 ## Project Workflow
 
-![Project_Flow](asset/project_flow.png)
+![Project_Flow](asset/project_flow.jpg)
 
 ---
 
