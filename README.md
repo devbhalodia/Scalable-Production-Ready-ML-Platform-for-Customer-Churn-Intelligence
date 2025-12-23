@@ -60,16 +60,14 @@ churn_prediction_system/
 
 ---
 
-## Notebooks
-
-### Churn Profiling & Retention Analysis  
+## Churn Profiling & Retention Analysis  
 **`01_Churn_Profiling_&_Retention_Analysis.ipynb`**
 
 - Customer behavior analysis
 - Churn vs non-churn segmentation
 - Retention insights and business impact
 
-## Highlights & Insights
+### Highlights & Insights
 - **Baseline churn rate:** ~**16%**
 - **Risk segmentation:**  
   - **High-Risk customers (~37%)** contribute ~**64% of churners**  
@@ -82,10 +80,9 @@ churn_prediction_system/
   - **4+ inactive months** → sharp churn increase  
   - **4+ bank contacts** → strong dissatisfaction signal  
   - **4+ product holders** → significantly lower churn
-
 ---
 
-### Churn Prediction & Modeling  
+## Churn Prediction & Modeling  
 **`02_Churn_Prediction.ipynb`**
 
 Three supervised models were trained on the engineered dataset  
@@ -95,7 +92,7 @@ Three supervised models were trained on the engineered dataset
 - **Random Forest** – strong uplift over baseline; reliable mid-complexity model with high accuracy and good churn recall.
 - **XGBoost** – best overall; achieved the strongest balance between churn recall and precision while maintaining very high accuracy.  
 
-### Metrics (test set)
+## Metrics (test set)
 
 | Model | Precision (0) | Recall (0) | F1 (0) | Precision (1) | Recall (1) | F1 (1) | Accuracy |
 |------|---------------|------------|--------|---------------|------------|--------|----------|
@@ -168,19 +165,19 @@ Streamlit UI → FastAPI → ML Pipeline → Prediction → UI
 
 The FastAPI inference service is fully containerized.
 
-Pull the docker image from docker hub
+**Pull the docker image from docker hub**
 
 ```bash
 docker pull bholebaba902/churn-api
 ```
 
-Run the container
+**Run the container**
 
 ```bash
 docker run -p 8000:8000 churn-api
 ```
 
-API available at:
+**API available at:**
 ```
 http://127.0.0.1:8000
 ```
