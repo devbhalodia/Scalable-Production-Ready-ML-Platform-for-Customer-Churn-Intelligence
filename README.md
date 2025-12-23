@@ -20,7 +20,7 @@ The system covers the **entire machine learning lifecycle**:
 
 ## Project Workflow
 
-![Dashboard Screenshot](assets/dashboard_ss.png)
+![Project_Flow](asset/project_flow.png)
 
 ---
 
@@ -168,26 +168,16 @@ Streamlit UI → FastAPI → ML Pipeline → Prediction → UI
 
 The FastAPI inference service is fully containerized.
 
-### Build Docker Image
+Pull the docker image from docker hub
 
 ```bash
-docker build -t churn-api .
+docker pull bholebaba902/churn-api
 ```
 
-### Run Container
+Run the container
 
 ```bash
 docker run -p 8000:8000 churn-api
-```
-
----
-
-## Running the Project Locally
-
-### Start FastAPI Server
-
-```bash
-uvicorn app:app --reload
 ```
 
 API available at:
@@ -220,7 +210,7 @@ http://localhost:8501
 - Churn by Inactivity Months
 - Churn by Contact Frequency
 
-![Dashboard Screenshot](assets/dashboard_ss.png)
+![Dashboard Screenshot](asset/dashboard_ss.png)
 
 ---
 
