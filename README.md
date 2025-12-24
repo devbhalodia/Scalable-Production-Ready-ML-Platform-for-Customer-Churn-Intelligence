@@ -39,22 +39,27 @@ The system covers the **entire machine learning lifecycle**:
 ## Project Structure
 
 ```
-churn_prediction_system/
+Production_Ready_Credit_Card_Churn_Prediction_System/
 │
-├── models/
-│   └── xgb_churn_pipeline.pkl
+├── asset/
 │
-├── preprocessing.py
-├── app.py
-├── streamlit_app.py
+├── churn_analytics/
+│   ├── 01_Churn_Profiling_&_Retention_Analysis.ipynb
+│   ├── 02_Churn_Prediction.ipynb
+│   ├── 03_SQL_KPIs.txt
+│   ├── 04_Dashboard.pbix
+│   └── 05_Report.pdf
 │
-├── 01_Churn_Profiling_&_Retention_Analysis.ipynb
-├── 02_Churn_Prediction.ipynb
+├── churn_prediction_system/
+│   ├── models/
+│   │   └── xgb_churn_pipeline.pkl
+│   │
+│   ├── app.py
+│   ├── ml_pipeline.py
+│   ├── preprocessing.py
+│   ├── requirements.txt
+│   └── streamlit_app.py
 │
-├── requirements.txt
-├── requirements_exact.txt
-├── Dockerfile
-├── .dockerignore
 └── README.md
 ```
 
